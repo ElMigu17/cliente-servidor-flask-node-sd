@@ -22,13 +22,8 @@ lista_obj=[
     "deadline": "17/11"},
 ]
 
-@app.route("/")
-def index():
-    return "<h1>hi</h1>"
-
-@app.route('/hello/')
-@app.route('/hello/<name>')
-def hello(name=None):
+@app.route('/')
+def hello():
     return render_template('front.html', len=len(lista_obj), objects=lista_obj)
 
 if __name__ == "__main__":
