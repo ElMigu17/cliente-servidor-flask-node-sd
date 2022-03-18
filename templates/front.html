@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> To Do List </title>
+    </head>
+    <body>
+        <div class="center">
+            <form id="form" class="arround">
+                <div class="siders"></div>
+                <input id="entrada">
+                <div class="arround siders" id="buttons">
+                    <button><img src={{ url_for('static',filename='lupa.png') }} class="imagem"></button>
+                    <button><img src={{ url_for('static',filename='plus.png') }} class="imagem"></button>
+                </div>
+            </form>
+            <ul id="lista">
+                {%for i in range(0, len)%}
+                    {%if i%2 == 0%}
+                    <li class="list-item gray">
+                    {%else%}
+                    <li class="list-item white">
+                    {%endif%}
+                        {%if objects[i].done%}
+                        <p class="done">
+                        {%else%}
+                        <p>
+                        {%endif%}
+                            {{objects[i].description}} - {{objects[i].deadline}}
+                        </p>
+                        <div>
+                            <button><img src={{ url_for('static',filename='trash.png') }} class="imagem"></button>
+                            <button>
+                                {%if objects[i].done%}
+                                <img src={{ url_for('static',filename='close.png') }} class="imagem">
+                                {%else%}
+                                <img src={{ url_for('static',filename='check.png') }} class="imagem">
+                                {%endif%}
+                            </button>
+                        </div>
+                    </li>
+                {%endfor%}
+            </ul>
+
+
+        </div>
+        
+    </body>
+
+</html>
+
+<style lang="css">
+.gray{
+    background-color: gray;
+}
+.white{
+    background-color: white;
+}
+#lista{
+    width: 48vw;
+
+}
+.list-item{
+    margin-bottom: 2px;
+    align-items: center;
+    display: flex;
+}
+.done{
+    text-decoration:line-through;
+    color: #555;
+}
+.siders{
+    width: 25%;
+    background-color: blue;
+
+}
+.center{
+    margin-top:10vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.arround{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#form{
+    height: 100%;
+    width: 50vw;
+    border: 1px solid black ;
+    padding: 4px;
+}
+.imagem{
+    width: 18px;
+}
+#entrada{
+    height: 30px;
+}
+</style>
